@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Aya's World - Sign In</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #a855f7, #9333ea);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    nav {
+      width: 100%;
+      background-color: rgba(126, 34, 206, 0.95);
+      padding: 15px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    nav .title {
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 1px;
+    }
+
+    nav form {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    nav input[type="password"] {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    nav button {
+      background-color: #7e22ce;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    nav button:hover {
+      background-color: #9333ea;
+    }
+
+    .error {
+      color: #ffb4b4;
+      font-size: 13px;
+      position: absolute;
+      top: 70px;
+      right: 20px;
+    }
+
+    .content {
+      text-align: center;
+      margin-top: 120px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="title">💜 Aya's World 💜</div>
+    <form id="loginForm">
+      <input type="password" id="pin" placeholder="Enter PIN">
+      <button type="submit">Sign In</button>
+    </form>
+  </nav>
+
+  <div class="error" id="errorMsg"></div>
+
+  <div class="content">
+    <h1>Welcome to Aya's World</h1>
+    <p>Sign in above to continue 💌</p>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(event){
+      event.preventDefault();
+      const pin = document.getElementById("pin").value;
+      const errorMsg = document.getElementById("errorMsg");
+
+      if(pin === "121924"){
+        // ✅ Redirect to your letter page
+        window.location.assign("Fie.html"); 
+      } else {
+        errorMsg.textContent = "❌ Wrong PIN! Try again.";
+      }
+    });
+  </script>
+</body>
+</html>
