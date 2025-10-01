@@ -2,111 +2,80 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aya's World - Sign In</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #a855f7, #9333ea);
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      font-family: Arial, sans-serif;
+      background-color: #d8b4fe; /* Purple theme */
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      font-size: 40px;
       color: white;
+      text-shadow: 2px 2px 4px #555;
     }
 
-    nav {
-      width: 100%;
-      background-color: rgba(126, 34, 206, 0.95);
-      padding: 15px 20px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    .form-box {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      width: 300px;
+      margin: auto;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
 
-    nav .title {
-      font-weight: 700;
-      font-size: 20px;
-      letter-spacing: 1px;
-    }
-
-    nav form {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    nav input[type="password"] {
-      padding: 8px 12px;
-      border: none;
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 2px solid #a855f7;
       border-radius: 6px;
-      font-size: 14px;
-      outline: none;
+      text-align: center;
     }
 
-    nav button {
-      background-color: #7e22ce;
+    button {
+      background: #a855f7;
       color: white;
+      padding: 10px 20px;
       border: none;
-      padding: 8px 15px;
       border-radius: 6px;
       cursor: pointer;
-      font-size: 14px;
-      transition: 0.3s;
+      font-size: 16px;
     }
 
-    nav button:hover {
-      background-color: #9333ea;
+    button:hover {
+      background: #9333ea;
     }
 
     .error {
-      color: #ffb4b4;
-      font-size: 13px;
-      position: absolute;
-      top: 70px;
-      right: 20px;
-    }
-
-    .content {
-      text-align: center;
-      margin-top: 120px;
+      color: red;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
-  <nav>
-    <div class="title">💜 Aya's World 💜</div>
-    <form id="loginForm">
-      <input type="password" id="pin" placeholder="Enter PIN">
-      <button type="submit">Sign In</button>
-    </form>
-  </nav>
-
-  <div class="error" id="errorMsg"></div>
-
-  <div class="content">
-    <h1>Welcome to Aya's World</h1>
-    <p>Sign in above to continue 💌</p>
+  <h1>Welcome to Aya's World 💜</h1>
+  
+  <div class="form-box">
+    <p><b>Sign In</b></p>
+    <input type="password" id="pinInput" placeholder="Enter PIN">
+    <br>
+    <button onclick="checkPin()">Sign In</button>
+    <p id="errorMsg" class="error"></p>
   </div>
 
   <script>
-    document.getElementById("loginForm").addEventListener("submit", function(event){
-      event.preventDefault();
-      const pin = document.getElementById("pin").value;
-      const errorMsg = document.getElementById("errorMsg");
-
-      if(pin === "121924"){
-        // ✅ Redirect to your letter page
-        window.location.assign("Fie.html"); 
+    function checkPin() {
+      let pin = document.getElementById("pinInput").value;
+      if (pin === "121924") {
+        window.location.href = "Fie.html"; // Redirect to next page
       } else {
-        errorMsg.textContent = "❌ Wrong PIN! Try again.";
+        document.getElementById("errorMsg").innerText = "❌ Wrong PIN, try again!";
       }
-    });
+    }
   </script>
 </body>
 </html>
