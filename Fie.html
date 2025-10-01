@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mahal</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #a56eff, #7d4ac7, #cfa8ff);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .container {
+    margin-top: 100px;
+    position: relative;
+    width: 200px;
+    height: 140px;
+    cursor: pointer;
+  }
+
+  .envelope {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    z-index: 3;
+    transition: opacity 1s ease;
+  }
+
+  .flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-bottom: 70px solid #fff;
+    transform-origin: top;
+    transition: transform 1s ease;
+    z-index: 4;
+  }
+
+  .heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 26px;
+    height: 26px;
+    background: red;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    animation: pulse 1.5s infinite;
+    z-index: 5;
+  }
+  .heart:before,
+  .heart:after {
+    content: "";
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    background: red;
+    border-radius: 50%;
+  }
+  .heart:before { top: -13px; left: 0; }
+  .heart:after { left: 13px; top: 0; }
+
+  @keyframes pulse {
+    0% { transform: translate(-50%, -50%) rotate(-45deg) scale(1); }
+    50% { transform: translate(-50%, -50%) rotate(-45deg) scale(1.2); }
+    100% { transform: translate(-50%, -50%) rotate(-45deg) scale(1); }
+  }
+
+  .letter {
+    display: none;
+    width: 90vw;
+    max-width: 500px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    margin: 50px auto;
+    text-align: center;
+    line-height: 1.7;
+    font-size: 15px;
+    color: #5a3d8a;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  }
+
+  .letter h1 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #7d4ac7;
+  }
+
+  /* Envelope open */
+  .open .flap {
+    transform: rotateX(180deg);
+  }
+  .open .envelope {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .open .heart {
+    display: none;
+  }
+  .open + .letter {
+    display: block;
+    animation: fadeIn 1.5s ease;
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0; transform: translateY(30px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  /* Falling purple hearts */
+  .falling-heart {
+    position: fixed;
+    top: -10px;
+    color: #a56eff;
+    font-size: 22px;
+    animation: fall linear forwards;
+  }
+
+  @keyframes fall {
+    to {
+      transform: translateY(110vh);
+      opacity: 0;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container" onclick="openEnvelope()">
+  <div class="envelope">
+    <div class="flap"></div>
+    <div class="heart"></div>
+  </div>
+</div>
+
+<div class="letter" id="letter">
+  <h1>Everyday Feels Like Our Day 💜</h1>
+  <p>
+I don’t even know if today is a special celebration, Girlfriend’s Day, my girl my gurl Day, or whatever the world decides to name it. 
+But honestly, it wouldn’t matter. Because for me, every single day feels like a celebration already.  
+
+Every day I wake up, I’m thankful that you are mine.  
+Every day I look forward to your smile, your voice, your presence whether near or far.  
+Every day, I silently celebrate the fact that I get to call you my girlfriend, my love, my safe place.  
+
+I don’t need a date on the calendar to remind me of how lucky I am.  
+All I need is you and the love we share that makes even the simplest moments feel extraordinary.  
+
+So today, just like yesterday, and tomorrow, and every day after that I celebrate us.  
+I celebrate you.  
+Because you are my everyday, my always, and my forever. 💜
+  </p>
+</div>
+
+<script>
+  function openEnvelope() {
+    document.querySelector(".container").classList.add("open");
+
+    // falling hearts animation
+    for (let i = 0; i < 20; i++) {
+      let heart = document.createElement("div");
+      heart.classList.add("falling-heart");
+      heart.innerHTML = "💜";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => { heart.remove(); }, 5000);
+    }
+
+    setTimeout(()=>{
+      document.getElementById("letter").scrollIntoView({behavior:"smooth"});
+    }, 1500);
+  }
+</script>
+
+</body>
+  </html>
+  
